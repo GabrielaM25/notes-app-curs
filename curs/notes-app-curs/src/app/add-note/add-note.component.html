@@ -1,0 +1,75 @@
+<h1>Add a note </h1>
+<h1 *ngIf="!isAddMode">Edit a note</h1>
+<!-- 
+<div class="add-note-form">
+ 
+    <mat-form-field>
+      <mat-label>Title </mat-label>
+        <input matInput [(ngModel)]="noteTitle"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description </mat-label>
+        <textarea matInput [(ngModel)]="noteDescription"></textarea>
+    </mat-form-field>
+
+    <mat-form-field >
+        <mat-label>Choose a category </mat-label>
+        <mat-select *ngIf="categories" [(ngModel)]="selectedCategoryId">
+          <mat-option *ngFor="let categ of categories" [value]="categ.id">{{categ.name}}</mat-option>        </mat-select>
+      </mat-form-field>
+</div>
+
+<button mat-button (click)="addNote()">Add</button> -->
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" > 
+    <!-- <div class="cross-validation"  [class.cross-validation-error]="form.errors?.['identityRevealed'] && (form.touched || form.dirty)"> -->
+        <div class="form-group">
+        <label >Title:  </label>
+  <!-- <mat-form-field> -->
+  <input
+      
+      name="title"
+      id="title"
+      formControlName="title"
+      placeholder="enter your title here" 
+      [ngClass]= "{ 'is-invalid': submitted && form.title.errors}"
+     />
+    
+    <div *ngIf= "submitted && form.title.errors" class="invalid-feedback">
+      <div *ngIf= "f.title.errors.required">First Name is required</div>
+  </div>
+     <!-- </mat-form-field> -->
+    </div>
+
+  
+  
+  
+  <br>
+  <!-- <div class="form-group">
+  <label >Description: </label>
+  <mat-form-field>
+    
+  <textarea matInput
+            name="description"
+            id="description"
+            formControlName="description"
+            placeholder="enter description here"
+            required>
+        </textarea>
+        </mat-form-field>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)"
+              class="alert alert-danger">
+
+            <div *ngIf="description.errors?.['required']">
+              description is required.
+            </div>
+     </div>
+  
+  </div> -->
+
+  <button mat-button type="submit" [disabled]="!form.valid">Add</button>
+<!-- </div> -->
+
+</form>
+
