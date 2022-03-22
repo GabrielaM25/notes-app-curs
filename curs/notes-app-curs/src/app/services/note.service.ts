@@ -73,4 +73,8 @@ export class NoteService {
   // getFiltredNotes(categoryId: string){
   //   return this.notes.filter(nota => nota.categoryId == categoryId)
   // }
+  getSearchFiltered(input: string) {
+    return this.httpClient.get<Array<Note>>(this.baseUrl + "/notes",this.httpOptions).pipe(map((notes:Array<Note>) => 
+    {return notes.filter(note => (note.title.includes(input) || note.description.includes(input)) === true);  }));
+  }
 }
