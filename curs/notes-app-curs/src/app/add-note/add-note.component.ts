@@ -18,12 +18,12 @@ export class AddNoteComponent implements OnInit {
   noteDescription: string;
   categories: Category[];
   selectedCategoryId: string;
-  isAddMode: boolean;
+  
 
 //for reactive form
-  noteId :string;
-  form: FormGroup;
-  submitted: false;
+  // noteId :string;
+//form: FormGroup;
+  // submitted: false;
 
   constructor(private noteService: NoteService,
      private filterService: FilterService,
@@ -34,23 +34,23 @@ export class AddNoteComponent implements OnInit {
 
   ngOnInit() {
     this.categories = this.filterService.getCategories();
-    this.noteId = this.route.snapshot.params['id'];
-        this.isAddMode = !this.noteId;
+        // this.form = this.formBuilder.group({
+        //   title: ['', Validators.required],
+        //   description: [''],
+        //   category: ['', Validators.required],
 
-        this.form = this.formBuilder.group({
-          title: ['', Validators.required],
-          description: ['', Validators.required],
-          category: ['', Validators.required],
+      // };
 
-      });
-
-      if (!this.isAddMode) {
-        this.noteService.getById(this.noteId)
-            .subscribe(x => this.form.patchValue(x));
-    }
+     
 
 
   }
+  // get titleForm() { return this.form.get('title'); }
+
+  // get descriptionForm() { return this.form.get('description'); }
+
+  // get categoryForm() { return this.form.get('category'); }
+
   addNote(){
     const note :Note={
       title : this.noteTitle,
@@ -61,10 +61,12 @@ export class AddNoteComponent implements OnInit {
     this.router.navigate(['']);
 
   }
-  // get f() { return this.form.controls; }
-  onSubmit(){
+}
+  // onSubmit(){
 
-  }
+  // }
+
+ 
   // https://stackblitz.com/edit/angular-master-details-crud-example?file=src%2Fapp%2Fusers%2Fadd-edit.component.ts
   // addNote(){
   //   let noteToAdd: Note = {
@@ -79,7 +81,7 @@ export class AddNoteComponent implements OnInit {
   //   this.router.navigate(['']);
   // }
 
-}
+
 //   note = { title: '', description: ' '};
 //   noteForm= new FormGroup({});
   

@@ -1,6 +1,11 @@
-<app-filter (emitSelectedFilter)="receiveCategory($event)" (emitWordSearch)="reciveInput($event)" >
+<app-filter
+  (emitSelectedFilter)="receiveCategory($event)"
+  (emitWordSearch)="reciveInput($event)"
+>
 </app-filter>
 
-<app-note [selectedCategoryId]="categoryId" [selectedSearchFilter]="wordToSearch"></app-note>
+<app-note
+  [selectedCategoryId]="categoryId"
+  [selectedSearchFilter]="wordToSearch"
+></app-note>
 <app-tools></app-tools>
-

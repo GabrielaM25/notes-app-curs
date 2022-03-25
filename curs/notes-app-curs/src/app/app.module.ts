@@ -19,11 +19,9 @@ import { FilterComponent } from './filter/filter.component';
 import { AddNoteComponent } from './add-note/add-note.component';
 import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
-import { NoteService } from './services/note.service';
-import { FilterService } from './filter.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpMockApiInterceptor } from './services/http-mock-api.interceptor';
 import { HttpClientModule } from '@angular/common/http';
+import { EditNoteComponent } from './edit-note/edit-note.component';
+import { NoteService } from './services/note.service';
 
 
 @NgModule({
@@ -35,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     FilterComponent,
     AddNoteComponent,
     HomeComponent,
+    EditNoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,12 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     HttpClientModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpMockApiInterceptor,
-    multi: true
-  }
-],
+  providers: [NoteService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

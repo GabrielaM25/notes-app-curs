@@ -1,0 +1,47 @@
+<div class="edit-note-form">
+<h1>Edit note</h1>
+
+<form [formGroup]="formGroup">
+  <label>Title</label>
+  <br>
+  <mat-form-field>
+    <input
+      matInput
+      [(ngModel)]="title"
+      placeholder="Enter your title"
+      type="text"
+      formControlName="title"
+      required
+    />
+  </mat-form-field>
+  <div *ngIf="titleForm.errors?.['required']">Title is required.</div>
+  <br>
+  <label>Description</label>
+  <br>
+  <mat-form-field>
+    <textarea
+      matInput
+      [(ngModel)]="description"
+      formControlName="description"
+      placeholder="Enter your description"
+    ></textarea>
+  </mat-form-field>
+
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select
+      [(ngModel)]="category"
+      name="inputNote"
+      formControlName="category"
+      required
+    >
+      <mat-option *ngFor="let categ of categories" [value]="categ.id">
+        {{ categ.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="categoryForm.errors?.['required']">Please select a category!</div>
+</form>
+<button (click)="editNote()" mat-button>Edit</button>
+</div>

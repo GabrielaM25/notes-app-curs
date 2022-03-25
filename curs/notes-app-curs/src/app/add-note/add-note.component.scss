@@ -1,8 +1,18 @@
+body{
+  background-color: #ffe4c4;
+  background-repeat: repeat;
+}
 .add-note-form {
     display: flex;
+    justify-content: flex-end;
     flex-direction: column;
     max-width: 300px; 
-    padding: 25px;
+    padding-top: 50px;
+    padding-left: 40%;
+.h1{
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+    
 }
 .cross-validation-error input {
     border-left: 5px solid red;
@@ -11,4 +21,9 @@
     max-width: 300px; 
       background-color:red;
   }
+  .mat-button, .mat-icon-button, .mat-stroked-button {
+    color: rgb(0, 0, 0);
+    background:burlywood ;
+}
+  
   

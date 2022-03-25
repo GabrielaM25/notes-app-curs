@@ -1,75 +1,77 @@
-<h1>Add a note </h1>
-<h1 *ngIf="!isAddMode">Edit a note</h1>
-<!-- 
+
+<body>
+
 <div class="add-note-form">
- 
+<h1>Add a note </h1>
+
+
     <mat-form-field>
-      <mat-label>Title </mat-label>
-        <input matInput [(ngModel)]="noteTitle"/>
+      <mat-label>Title</mat-label>
+        <input matInput  required [(ngModel)]="noteTitle"/>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description </mat-label>
-        <textarea matInput [(ngModel)]="noteDescription"></textarea>
+      <mat-label>Description</mat-label>
+        <textarea matInput  required  [(ngModel)]="noteDescription"></textarea>
     </mat-form-field>
 
     <mat-form-field >
         <mat-label>Choose a category </mat-label>
-        <mat-select *ngIf="categories" [(ngModel)]="selectedCategoryId">
-          <mat-option *ngFor="let categ of categories" [value]="categ.id">{{categ.name}}</mat-option>        </mat-select>
+        <mat-select  *ngIf="categories" [(ngModel)]="selectedCategoryId">
+            <mat-option *ngFor="let categ of categories" [value]="categ.id">{{categ.name}}</mat-option>
+        </mat-select>
       </mat-form-field>
-</div>
 
-<button mat-button (click)="addNote()">Add</button> -->
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" > 
-    <!-- <div class="cross-validation"  [class.cross-validation-error]="form.errors?.['identityRevealed'] && (form.touched || form.dirty)"> -->
-        <div class="form-group">
-        <label >Title:  </label>
-  <!-- <mat-form-field> -->
-  <!-- <input
-      
-      name="title"
-      id="title"
-      formControlName="title"
-      placeholder="enter your title here" 
-      [ngClass]= "{ 'is-invalid': submitted && form.title.errors}"
-     />
-     -->
-    <!-- <div *ngIf= "submitted && form.title.errors" class="invalid-feedback">
-      <div *ngIf= "f.title.errors.required">First Name is required</div>
-  </div> -->
-     <!-- </mat-form-field> -->
-    </div>
+<button mat-button (click)="addNote()">Add</button>
+</div> 
+  
+</body>
 
-  
-  
-  
-  <br>
-  <!-- <div class="form-group">
-  <label >Description: </label>
+<!-- <h1>Add a note</h1>
+<label>Title</label>
+<form [formGroup]="form">
   <mat-form-field>
-    
-  <textarea matInput
-            name="description"
-            id="description"
-            formControlName="description"
-            placeholder="enter description here"
-            required>
-        </textarea>
-        </mat-form-field>
-            <div *ngIf="description.invalid && (description.dirty || description.touched)"
-              class="alert alert-danger">
-
-            <div *ngIf="description.errors?.['required']">
-              description is required.
-            </div>
-     </div>
+    <input
+      matInput
+      name="inputNote"
+      [(ngModel)]="noteTitle"
+      placeholder="Enter your title"
+      type="text"
+      formControlName="title"
+      required
+    />
+  </mat-form-field>
+  <div *ngIf="titleForm.errors?.['required']">Title is required.</div>
   
-  </div> -->
-
-  <button mat-button type="submit" [disabled]="!form.valid">Add</button>
-<!-- </div> -->
-
 </form>
-
+<form>
+  <label>Description</label>
+  <br />
+  <mat-form-field>
+    <textarea
+      matInput
+      name="inputNote"
+      [(ngModel)]="noteDescription"
+      formControlName="description"
+      placeholder="Enter your description"
+    ></textarea>
+  </mat-form-field>
+  
+</form>
+<form  [formGroup]="form">
+  <br />
+  <mat-form-field appearance="fill">
+    <mat-label>Select category</mat-label>
+    <mat-select [(ngModel)]="selectedCategoryId" 
+                name="inputNote"
+                formControlName="category"
+                required>
+      <mat-option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="categoryForm.errors?.['required']">Please select a type of note!</div>
+</form>
+<button (click)="addNote()" mat-button>Add</button> -->

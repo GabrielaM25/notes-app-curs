@@ -6,17 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tools.component.scss']
 })
 export class ToolsComponent implements OnInit {
-  title:string= "Add note";
+ title:string= "Add note";
   titleColor:string = "pink";
-  noteContent:string="";
-  shownTitle:string;
+ noteContent:string="";
+  showTitle:string;
   constructor() { }
 
   ngOnInit(): void {
   }
-  setTitle(){
-    // this.noteContent="dupa apasarea butonului"
-    // this.titleColor="green";
-    this.shownTitle= this.title;
-  }
+  // setTitle(){
+  //   // this.noteContent="dupa apasarea butonului"
+  //   // this.titleColor="green";
+  //   this.shownTitle= this.title;
+  // }
 }

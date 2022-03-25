@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-
 import { Category } from '../category';
 import { FilterService } from '../filter.service';
+import { NoteService } from '../services/note.service';
 
 @Component({
   selector: 'app-filter',
@@ -11,12 +11,10 @@ import { FilterService } from '../filter.service';
 export class FilterComponent implements OnInit {
   @Output() emitSelectedFilter = new EventEmitter<string>();
   @Output() emitWordSearch = new EventEmitter<string>();
-  categories: Category[] = [
-    { name: 'To Do', id: '1' },
-    { name: 'Done', id: '2' },
-    { name: 'Doing', id: '3' },
-  ];
-  wordToSearch:string = '';
+
+  categories: Category[] = [];
+  wordToSearch: string = '';
+
   constructor(private filtersService: FilterService) {}
 
   selectFilter(categoryId: string) {
@@ -24,9 +22,8 @@ export class FilterComponent implements OnInit {
     console.log(categoryId);
   }
 
-  search(){
-      this.emitWordSearch.emit(this.wordToSearch);
-     
+  search() {
+    this.emitWordSearch.emit(this.wordToSearch);
   }
 
   ngOnInit() {

@@ -28,7 +28,7 @@ export class NoteService {
   //   }
   // ];
 
-  readonly baseUrl = 'https://localhost:4200';
+  readonly baseUrl = 'https://localhost:5001/notes/';
   readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -39,26 +39,35 @@ export class NoteService {
 
   getNotes(): Observable<Note[]> {
     return this.httpClient.get<Note[]>(
-      this.baseUrl + '/notes',
+      this.baseUrl ,
       this.httpOptions
     );
   }
+  
+
   getFiltredNotes(categId: string): Observable<Note[]> {
     return this.httpClient
-      .get<Note[]>(this.baseUrl + '/notes', this.httpOptions)
+      .get<Note[]>( this.baseUrl ,
+      this.httpOptions)
       .pipe(
         map((notes) => notes.filter((note) => note.categoryId === categId))
       );
+      
   }
   addNote(note: Note) {
-    return this.httpClient.post(this.baseUrl + '/note', note, this.httpOptions);
+    return this.httpClient.post(this.baseUrl, note, this.httpOptions);
   }
   deleteNote(id: string){
-     return this.httpClient.delete(this.baseUrl+'/note/{id}' ,this.httpOptions)
+     return this.httpClient.delete(this.baseUrl +id,this.httpOptions)
+
+  }
+  editNote(note: Note){
+    return this.httpClient.put(this.baseUrl  + note.id, note, this.httpOptions);
 
   }
   getById(id: string) {
-    return this.httpClient.get<Note>(this.baseUrl+'/note/{id}');
+    console.log(this.baseUrl +id )
+    return this.httpClient.get<Note>(this.baseUrl +id,this.httpOptions);
 }
 
   //   serviceCall() {
@@ -74,7 +83,7 @@ export class NoteService {
   //   return this.notes.filter(nota => nota.categoryId == categoryId)
   // }
   getSearchFiltered(input: string) {
-    return this.httpClient.get<Array<Note>>(this.baseUrl + "/notes",this.httpOptions).pipe(map((notes:Array<Note>) => 
+    return this.httpClient.get<Array<Note>>(this.baseUrl  ,this.httpOptions).pipe(map((notes:Array<Note>) => 
     {return notes.filter(note => (note.title.includes(input) || note.description.includes(input)) === true);  }));
   }
 }

@@ -5,6 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+
 import { Note } from '../note';
 import { NoteService } from '../services/note.service';
 
@@ -17,24 +18,34 @@ export class NoteComponent implements OnInit, OnChanges {
   @Input() selectedCategoryId: string;
   @Input() selectedSearchFilter: string;
   notes: Note[];
+
   constructor(private noteService: NoteService) {}
 
   ngOnInit(): void {
-    this.noteService.getNotes().subscribe((note: Note[]) => {
-      this.notes = note;
+    this.noteService.getNotes().subscribe((notes: Note[]) => {
+      this.notes = notes;
     });
   }
   ngOnChanges(changes: SimpleChanges): void {
+  if (this.selectedCategoryId != changes['selectedCategoryId'].previousValue ){
     this.noteService
       .getFiltredNotes(this.selectedCategoryId)
-      .subscribe((note: Note[]) => {
-        this.notes = note;
+      .subscribe((notes: Note[]) => {
+        this.notes = notes;
       });
+    }
+    else if(this.selectedSearchFilter){
     this.noteService
       .getSearchFiltered(this.selectedSearchFilter)
       .subscribe((notes: Array<Note>) => {
         this.notes = notes;
       });
+    }
+    else{
+      this.noteService.getNotes().subscribe((notes: Note[]) => {
+        this.notes = notes;
+      });
+    }
   }
   deleteNote(id: string) {
     const note = this.notes.find((x) => x.id === id);
